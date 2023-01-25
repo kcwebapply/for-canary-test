@@ -60,18 +60,18 @@ spec:
 #      activeService: sample-app   # アプリに応じて変更
 #      previewService: sample-app-canary   # アプリに応じて変更
 #      autoPromotionEnabled: true
-#  template:
-#    metadata:
-#      labels:
-#        app: sample-app   # アプリに応じて変更k
-#    spec:
-#      terminationGracePeriodSeconds: 600
-#      containers:
-#        - name: sample-app   # アプリに応じて変更
-#          image: nginx  # アプリに応じて変更
-#          imagePullPolicy: IfNotPresent
-#          ports:
-#            - containerPort: 80   # アプリに応じて変更
+  template:
+    metadata:
+      labels:
+        app: sample-app   # アプリに応じて変更k
+    spec:
+      terminationGracePeriodSeconds: 600
+      containers:
+        - name: sample-app   # アプリに応じて変更
+          image: nginx  # アプリに応じて変更
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80   # アプリに応じて変更
 #          lifecycle:
 #            preStop:
 #              exec:

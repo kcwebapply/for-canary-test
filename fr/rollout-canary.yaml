@@ -1,47 +1,47 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app   # アプリに応じて変更
+  name: sample-app-fr   # アプリに応じて変更
   labels:
-    app.kubernetes.io/name: sample-app   # アプリに応じて変更
+    app.kubernetes.io/name: sample-app-fr   # アプリに応じて変更
 spec:
   ports:
     - name: http
       port: 80   # アプリに応じて変更
       protocol: TCP
   selector:
-    app: sample-app   # アプリに応じて変更
+    app: sample-app-fr   # アプリに応じて変更
   type: NodePort
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app-canary   # アプリに応じて変更
+  name: sample-app-canary-fr   # アプリに応じて変更
   labels:
-    app.kubernetes.io/name: sample-app   # アプリに応じて変更
+    app.kubernetes.io/name: sample-app-fr   # アプリに応じて変更
 spec:
   ports:
     - name: http
       port: 80   # アプリに応じて変更
       protocol: TCP
   selector:
-    app: sample-app   # アプリに応じて変更
+    app: sample-app-fr   # アプリに応じて変更
   type: NodePort
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: sample-app   # アプリに応じて変更
+  name: sample-app -fr  # アプリに応じて変更
   labels:
-    app.kubernetes.io/name: sample-app   # アプリに応じて変更
+    app.kubernetes.io/name: sample-app-fr   # アプリに応じて変更
 spec:
   selector:
     matchLabels:
-      app: sample-app   # アプリに応じて変更
+      app: sample-app-fr   # アプリに応じて変更
   strategy:
     canary:
-      stableService: sample-app
-      canaryService: sample-app-canary
+      stableService: sample-app-fr
+      canaryService: sample-app-canary-fr
 #      trafficRouting:
 #        nginx:
 #          stableIngress: ingress-rollouts-demo
@@ -60,18 +60,18 @@ spec:
 #      activeService: sample-app   # アプリに応じて変更
 #      previewService: sample-app-canary   # アプリに応じて変更
 #      autoPromotionEnabled: true
-#  template:
-#    metadata:
-#      labels:
-#        app: sample-app   # アプリに応じて変更k
-#    spec:
-#      terminationGracePeriodSeconds: 600
-#      containers:
-#        - name: sample-app   # アプリに応じて変更
-#          image: nginx  # アプリに応じて変更
-#          imagePullPolicy: IfNotPresent
-#          ports:
-#            - containerPort: 80   # アプリに応じて変更
+  template:
+    metadata:
+      labels:
+        app: sample-app-fr   # アプリに応じて変更k
+    spec:
+      terminationGracePeriodSeconds: 600
+      containers:
+        - name: sample-app-fr   # アプリに応じて変更
+          image: nginx  # アプリに応じて変更
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80   # アプリに応じて変更
 #          lifecycle:
 #            preStop:
 #              exec:
